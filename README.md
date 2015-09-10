@@ -81,12 +81,12 @@ The TSG add 39 Bytes of metadatas the be able to reconstruct the original packet
 TCP handle packet size with MSS-Clamping but other protocol should not send more then 1411 byte of data.
 You can still reduce MTU if maximum packet size could be bigger.
 
-* ZeroMQ lost connection after 127 messages
+* ZeroMQ loose connection after 127 messages
 
 You have to use version bigger then 4.1.3 (4.0.X is retired)
 
 
-* Is there any log 
+* Is there any log ?
 
 Somes logs are written in /var/log/syslog
 
