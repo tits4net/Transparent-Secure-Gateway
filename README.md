@@ -34,24 +34,24 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 # Installation server side
 
 1. Install Server dependancies 
-* Python2
-* sqlite3
-* pysqlite3
-* libsodium
-* libzmq
-* pyzmq
-* tornado
+	* Python2
+	* sqlite3
+	* pysqlite3
+	* libsodium
+	* libzmq
+	* pyzmq
+	* tornado
 2. Generate public/private key with gen_cert.py
 3. You can start the server and connect via http to localhost:8888
 
 # Installation client side
 1. Install Client dependancies
-* libnetfilter-queue1
-* libnetfilter-queue-dev
-* libsodium-dev
-* libsodium
-* libzmq-dev
-* libzmq
+	* libnetfilter-queue1
+	* libnetfilter-queue-dev
+	* libsodium-dev
+	* libsodium
+	* libzmq-dev
+	* libzmq
 
 
 2. Generate configuration file with cb_gen_config_file and copy it to /etc/crypt_bridge/cb.conf
