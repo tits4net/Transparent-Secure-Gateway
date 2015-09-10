@@ -25,7 +25,7 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 
 
 
-## Installation
+## Server side
 * Get client authentication request
 * Provide a webgui (port 8888) to trust clients connection by adding there private key
 * Send key, anti-replay numbers, iptables rules and commands to all clients
