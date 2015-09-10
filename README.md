@@ -4,7 +4,7 @@ Connection less VPN project design for industrial protocols.
 # How it works
 The Transparent Secure Gateway is a prototype of new way to secure IP communication. 
 The software get IP captured packet from nfnetfilter-queue and encrypt/decrypt the IP payload with libsodium and send the packet back. 
-It's connect securly to a server via ZeroMQ to get symetric key.
+It's connect securly to a server via ZeroMQ to get the encryption key.
 
 The project was design to be use on an OpenWRT device with 2 bridged interface (WAN to network and LAN to protected device)
 ## Global architecture (without the server)
