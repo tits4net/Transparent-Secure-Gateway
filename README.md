@@ -13,7 +13,7 @@ The project was design to be use on an OpenWRT device with 2 bridged interface (
 ![Capture architecture](http://i.imgur.com/wqkksF1.png)
 
 # Warning 
-This software is a Proof-Of-Concept. User feedback and error handling are not good. If you are looking for more documentation, please read the source code. 
+This software is a Proof-Of-Concept. User feedback and error handling are not good but there is comments in source codes. 
 
 # Features
 ## Client side
@@ -31,7 +31,7 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 * Send key, anti-replay numbers, iptables rules and commands to all clients
 * Can receive SIGUSR1 to change symetric key
 
-# Installation server side
+# Install server side
 
 1. Install Server dependancies
 	* Python2
@@ -44,7 +44,7 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 2. Generate public/private key with gen_cert.py
 3. You can start the server (TSG_SRV_v0.3.py) and connect via http to localhost:8888
 
-# Installation client side
+# Install client side
 1. Install Client dependancies
 	* libnetfilter-queue1
 	* libnetfilter-queue-dev
@@ -57,15 +57,16 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 2. Generate configuration file with cb_gen_config_file and copy it to /etc/crypt_bridge/cb.conf
 3. Generate client public/private key with "key generator/client/crypt_bridge_gen_key"
 4. Configure the two interfaces as bridge with brctl. The bridge name have to be br-br0.
-5. Allow iptable to inspect bridge traffic
+5. Make sure your interfaces don't use Generic Receive Offload or Large Receive Offload or disable them with ethtool
+6. Allow iptable to inspect bridge traffic
 ```
 echo "1" > /proc/sys/net/bridge/bridge-nf-call-iptables 
 ```
-6. Add MSS-Clamping to avoid MTU oversize by adding the TSG metadata with TCP
+7. Add MSS-Clamping to avoid MTU oversize by adding the TSG metadata with TCP
 ```
 iptables -t mangle -A POSTROUTING -p tcp --tcp-flags SYN,RST SYN -o br-br0 -j TCPMSS --set-mss 1411
 ```
-7. You can start the crypt_bridge software. After start it gets demonized. 
+8. You can start the crypt_bridge software. After start it gets demonized. 
 
 ## Usage
 1. The client connect to the secure server and send its private key
@@ -75,13 +76,19 @@ iptables -t mangle -A POSTROUTING -p tcp --tcp-flags SYN,RST SYN -o br-br0 -j TC
 
 # FAQ
 * UDP/Other IP protocol packets are lost after encryption
+
 The TSG add 39 Bytes of metadatas the be able to reconstruct the original packet and for encryption header. 
 TCP handle packet size with MSS-Clamping but other protocol should not send more then 1411 byte of data.
 You can still reduce MTU if maximum packet size could be bigger.
 
 * ZeroMQ lost connection after 127 messages
-You have to use version bigger then 4.1.3
+
+You have to use version bigger then 4.1.3 (4.0.X is retired)
+
 
 * Is there any log 
+
 Somes logs are written in /var/log/syslog
+
+
 
