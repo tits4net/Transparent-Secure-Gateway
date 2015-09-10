@@ -4,7 +4,7 @@ Connection less VPN project design for industrial protocols.
 # How it works
 The Transparent Secure Gateway is a prototype of new way to secure IP communication. 
 The software get IP captured packet from nfnetfilter-queue and encrypt/decrypt the IP payload with libsodium and send the packet back. 
-It's connect securly to a server via ZeroMQ to get the encryption key.
+It's connect securely to a server via ZeroMQ to get the encryption key.
 
 The project was design to be use on an OpenWRT device with 2 bridged interface (WAN to network and LAN to protected device)
 ## Global architecture (without the server)
@@ -18,7 +18,7 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 # Features
 ## Client side
 * Read the netfilter-queue and get packets
-* encryt/decrypt IP payload
+* encrypt/decrypt IP payload
 * Modify IP header to adapt checksum / size / IP protocol number (253)
 * Read configuration file with server IP / server public key / Id in /etc/crypt_bridge/cb.conf
 * Detect packet replay (with a delay of 4 seconds)
@@ -26,14 +26,14 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 
 
 ## Installation
-* Get client authentification request
+* Get client authentication request
 * Provide a webgui (port 8888) to trust clients connection by adding there private key
 * Send key, anti-replay numbers, iptables rules and commands to all clients
-* Can receive SIGUSR1 to change symetric key
+* Can receive SIGUSR1 to change symmetric key
 
 # Install server side
 
-1. Install Server dependancies
+1. Install Server dependencies
 	* Python2
 	* sqlite3
 	* pysqlite3
@@ -45,7 +45,7 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 3. You can start the server (TSG_SRV_v0.3.py) and connect via http to localhost:8888
 
 # Install client side
-1. Install Client dependancies
+1. Install Client dependencies
 	* libnetfilter-queue1
 	* libnetfilter-queue-dev
 	* libsodium-dev
