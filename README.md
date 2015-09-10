@@ -25,7 +25,7 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 
 
 
-## Server side
+## Installation
 * Get client authentification request
 * Provide a webgui (port 8888) to trust clients connection by adding there private key
 * Send key, anti-replay numbers, iptables rules and commands to all clients
@@ -33,7 +33,7 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 
 # Installation server side
 
-1. Install Server dependancies 
+1. Install Server dependancies
 	* Python2
 	* sqlite3
 	* pysqlite3
@@ -42,7 +42,7 @@ This software is a Proof-Of-Concept. User feedback and error handling are not go
 	* pyzmq
 	* tornado
 2. Generate public/private key with gen_cert.py
-3. You can start the server and connect via http to localhost:8888
+3. You can start the server (TSG_SRV_v0.3.py) and connect via http to localhost:8888
 
 # Installation client side
 1. Install Client dependancies
@@ -65,8 +65,13 @@ echo "1" > /proc/sys/net/bridge/bridge-nf-call-iptables
 ```
 iptables -t mangle -A POSTROUTING -p tcp --tcp-flags SYN,RST SYN -o br-br0 -j TCPMSS --set-mss 1411
 ```
-
 7. You can start the crypt_bridge software. After start it gets demonized. 
+
+## Usage
+1. The client connect to the secure server and send its private key
+2. You can trust it in server's web-gui
+3. You have to connect  two TSG-client to secure a communication
+3. After trusting both of them, you can send a new iptables rules for a protocole. This one will be encrypted/decrypted by the crypt_bridge.
 
 # FAQ
 * UDP/Other IP protocol packets are lost after encryption
